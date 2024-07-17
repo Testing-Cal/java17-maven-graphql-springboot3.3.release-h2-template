@@ -2,7 +2,6 @@ package com.template.demo.entity;
 
 import io.leangen.graphql.annotations.GraphQLQuery;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
 import lombok.ToString;
 
 import jakarta.persistence.*;

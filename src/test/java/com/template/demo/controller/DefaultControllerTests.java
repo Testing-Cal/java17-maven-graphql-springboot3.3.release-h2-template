@@ -7,9 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -46,7 +44,7 @@ public class DefaultControllerTests {
     }
 
     private String mockDefaultResponse() {
-        return title + "Hello! You have successfully set up your Java17 GraphQL Gradle SpringBoot:3.3 environment by using the Lazsa template. You're all set to start coding. " +
+        return title + "Hello! You have successfully set up your Java17 GraphQL Maven SpringBoot:3.3.1 environment by using the Lazsa template. You're all set to start coding. " +
             "<br/> <br/>" +
             "NOTE: for GraphQL testing instructions, please go through the README file in the root directory";
     }
