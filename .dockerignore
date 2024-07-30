@@ -123,7 +123,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+#.env
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -332,4 +332,5 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+!/build/libs/
 
