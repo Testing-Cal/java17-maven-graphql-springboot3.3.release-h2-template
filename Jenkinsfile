@@ -369,7 +369,7 @@ pipeline {
                                 // stage details here
                                 echo "echoed BUILD_TAG--- $BUILD_TAG"
                                 sh """
-                                    docker run --rm -v "$WORKSPACE":/opt/repo/mymaven -w /opt/repo/mymaven $JAVA_MVN_IMAGE_VERSION ./mvnw clean install -Dmaven.test.skip=true
+                                    docker run --rm -v "$WORKSPACE":/opt/repo -w /opt/repo $JAVA_MVN_IMAGE_VERSION ./mvnw clean install -Dmaven.test.skip=true
                                     sudo chown -R `id -u`:`id -g` "$WORKSPACE" 
                                 """
                             }

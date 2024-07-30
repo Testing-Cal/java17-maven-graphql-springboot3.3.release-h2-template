@@ -145,7 +145,7 @@ pipeline {
                         if ("${list[i]}" == "'UnitTests'") {
                             stage('Unit Tests') {
                                 sh """
-                                    docker run --rm -v "$WORKSPACE":/opt/repo/mymaven -w /opt/repo/mymaven $JAVA_MVN_IMAGE_VERSION ./mvnw test --batch-mode
+                                    docker run --rm -v "$WORKSPACE":/opt/repo -w /opt/repo $JAVA_MVN_IMAGE_VERSION ./mvnw test --batch-mode
                                 """
                             }
                         }
