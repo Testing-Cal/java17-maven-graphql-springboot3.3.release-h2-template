@@ -202,7 +202,7 @@ pipeline {
         REGISTRY_URL = "${DOCKER_REPO_URL}"
         ACTION = "${ACTION}"
         DEPLOYMENT_TYPE = "${DEPLOYMENT_TYPE == "" ? "EC2" : DEPLOYMENT_TYPE}"
-        \KUBE_SECRET = "${KUBE_SECRET}"
+        KUBE_SECRET = "${KUBE_SECRET}"
         CHROME_BIN = "/usr/bin/google-chrome"
         ARTIFACTORY = "${ARTIFACTORY == "" ? "ECR" : ARTIFACTORY}"
         ARTIFACTORY_CREDENTIALS = "${ARTIFACTORY_CREDENTIAL_ID}"
@@ -326,12 +326,12 @@ pipeline {
 
                                                   if (env.SONAR_CREDENTIAL_ID != null && env.SONAR_CREDENTIAL_ID != '') {
                                                             withCredentials([usernamePassword(credentialsId: "$SONAR_CREDENTIAL_ID", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                                                                sh """docker run -v "$WORKSPACE":/app -w /app sonarsource/sonar-scanner-cli:11.0 -Dsonar.projectKey="${sonar_project_key}" -Dsonar.projectName="${sonar_project_key}" -Dsonar.organization="${metadataVars.sonarOrg}" -Dsonar.java.binaries=build/classes -Dsonar.junit.reportPaths=./build/test-results/test -Dsonar.coverage.jacoco.xmlReportPaths=./build/reports/jacoco/test -Dsonar.exclusions=build/reports/**.*,build/test-results/**.* -Dsonar.host.url="${metadataVars.sonarHost}" -Dsonar.sources=src -Dsonar.login=$PASSWORD"""
+                                                                sh """docker run -v "$WORKSPACE":/app -w /app sonarsource/sonar-scanner-cli:11.0 -Dsonar.java.binaries='.' -Dsonar.exclusions='pom.xml, target/**/*' -Dsonar.projectKey="${sonar_project_key}" -Dsonar.projectName="${sonar_project_key}" -Dsonar.host.url="${metadataVars.sonarHost}" -Dsonar.organization="${metadataVars.sonarOrg}" -Dsonar.sources=src -Dsonar.login=$PASSWORD"""
                                                             }
                                                         }
                                                         else{
                                                             withSonarQubeEnv('pg-sonar') {
-                                                                sh """docker run -v "$WORKSPACE":/app -w /app sonarsource/sonar-scanner-cli:11.0 -Dsonar.projectKey="${sonar_project_key}" -Dsonar.projectName="${sonar_project_key}" -Dsonar.organization="${metadataVars.sonarOrg}" -Dsonar.junit.reportPaths=./build/test-results/test -Dsonar.java.binaries=build/classes -Dsonar.coverage.jacoco.xmlReportPaths=./build/reports/jacoco/test -Dsonar.exclusions=build/reports/**.*,build/test-results/**.* -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.sources=src -Dsonar.login=$SONAR_AUTH_TOKEN"""
+                                                                sh """docker run -v "$WORKSPACE":/app -w /app sonarsource/sonar-scanner-cli:11.0 -Dsonar.java.binaries='.' -Dsonar.exclusions='pom.xml, target/**/*' -Dsonar.organization="${metadataVars.sonarOrg}" -Dsonar.projectKey="${sonar_project_key}" -Dsonar.projectName="${sonar_project_key}" -Dsonar.host.url="$SONAR_HOST_URL" -Dsonar.sources=src -Dsonar.login=$SONAR_AUTH_TOKEN """
                                                             }
                                                         }
 

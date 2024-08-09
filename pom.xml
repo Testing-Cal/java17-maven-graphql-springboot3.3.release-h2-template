@@ -154,12 +154,12 @@
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>${jacoco.version}</version>
-            <configuration>
+            <!-- <configuration>
                 <excludes>
                     <exclude>**/*com.template.com.template.demo.Application.class</exclude>
                     <exclude>**/com/template/demo/entity/*</exclude>
                 </excludes>
-            </configuration>
+            </configuration> -->
             <executions>
                 <execution>
                     <goals>
